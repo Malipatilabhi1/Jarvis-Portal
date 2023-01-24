@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="header">
+        <label>Datasets </label><label class="count">10</label>  
+      <!-- <mat-form-field> -->
+        <!-- <mat-icon matPrefix >search</mat-icon> -->
+        <input matInput type="search" placeholder="Search Datasets..." class="input">
+      <!-- </mat-form-field>   -->
+    </div>
+
+
+<div class="row">
+    <div *ngFor="let data of Models" class="col-md-3 size">
+        <mat-card  routerLink="/model-content">
+            <a>{{data.name}}</a><hr>
+            <p>{{data.content}}
+            </p>
+        </mat-card>
+    </div>
+</div>
+</div>
