@@ -1,0 +1,271 @@
+<div class="container">
+
+  <div class="container mt-3">  
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+      Add Jar
+    </button>
+  </div>
+  
+
+    <div class="row">
+    <mat-card class="col-md-2 size">
+        <mat-card class="head">
+            <h5>Solutions Jar</h5>
+            <label>Verticalized Engines</label>
+        </mat-card><hr>
+        <input placeholder="Filter" >
+    </mat-card>
+    <div class="col-md-2">
+        <mat-card class="head">
+            <h5>Front end Jar</h5>
+            <label>UI/UX templates</label>
+        </mat-card><hr>
+        <input placeholder="Filter" class="filter">
+    </div>
+    <div class="col-md-2">
+        <mat-card class="head">
+            <h5>Engine jar</h5>
+            <label>E2E task specific workflows</label>
+        </mat-card><hr>
+        <input placeholder="Filter" class="filter">
+
+        <div *ngFor="let data of Engin">
+          <mat-card class="jars">
+            <h5>{{data.name}}</h5>
+            <label>{{data.desc}}</label>
+           <label>{{data.name}}:<a href={{data.url}}>Link</a></label>  
+          </mat-card>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <mat-card class="head">
+            <h5>Model jar</h5>
+            <label>Intelligence Repository</label>
+        </mat-card><hr>
+        <input placeholder="Filter" class="filter">
+
+        <div *ngFor="let data of Modules">
+          <mat-card class="jars">
+            <h5>{{data.name}}</h5>
+            <label>{{data.desc}}</label>
+           <label>{{data.name}}:<a href={{data.url}}>Link</a></label>
+           <mat-icon  data-bs-toggle="modal" data-bs-target="#ModelModal">autorenew</mat-icon>
+           <!-- <button  data-bs-toggle="modal" data-bs-target="#ModelModal">Create</button> -->
+          </mat-card>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <mat-card class="head">
+            <h5>Data jar</h5>
+            <label>Unified data store</label>
+        </mat-card><hr>
+        <input placeholder="Filter" class="filter">
+
+        <div *ngFor="let data of Dataset">
+          <mat-card class="jars">
+            
+            <h5>{{data.Type}}</h5>
+            <label>{{data.Name}}</label>
+            <label>{{data.Version}}</label>
+           <label>{{data.Desc}}
+            <!-- :<a href={{data.url}}>Link</a> -->
+          </label>
+           <mat-icon  data-bs-toggle="modal" data-bs-target="#DownloadModal" (click)="setDataValues(data)">autorenew</mat-icon>
+           <!-- <button  data-bs-toggle="modal" data-bs-target="#DownloadModal">Create</button>  -->
+           <!-- <mat-icon class="download_icon" data-bs-toggle="modal" data-bs-target="#DownloadModal">file_download</mat-icon> -->
+              
+          </mat-card>
+        </div>
+    </div>   
+</div>
+</div>
+
+
+
+
+
+<!---- The Modal ======== Create Dataset ---->
+<div class="modal" id="DownloadModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="popup container">
+
+      <mat-tab-group>
+      
+      <mat-tab label="API_Data">
+          <form [formGroup]="formdata1" class="example-form">
+            <h4 style="margin-left: 15px;">Enter Details</h4>
+            
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Name Of Dataset</mat-label>
+              <input matInput placeholder="Enter name" formControlName="dataset_name">
+            </mat-form-field>
+    
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Dataset Project</mat-label>
+              <input matInput placeholder="Enter name" formControlName="dataset_project">
+            </mat-form-field>
+    
+            <!-- <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Dataset Version</mat-label>
+              <input matInput placeholder="Enter version" formControlName="version">
+            </mat-form-field> -->
+    
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Dataset Id</mat-label>
+              <input matInput placeholder="Enter Id" formControlName="dataset_id">
+            </mat-form-field>
+    
+            <!-- <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Description</mat-label>
+              <textarea matInput placeholder="Description" formControlName="description"></textarea>
+            </mat-form-field>  -->
+          </form>
+
+               <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" (click)="DownloadData()">Save</button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Script">
+          <code>
+            <br><br>
+            <pre>{{value1}}</pre></code>
+          <button type="button" class="btn btn-success model" (click)="copytext()">Copy</button>
+          <!-- <button type="button" class="btn btn-danger model" data-bs-dismiss="modal">Close</button> -->
+
+           <!-- <pre> <code>{{value1}}</code> </pre> -->
+          <!-- <textarea cols="61.5" rows="14" [(ngModel)]="value1"></textarea> -->
+          <!-- <button type="button" class="btn btn-success" [cdkCopyToClipboard]="value1">Copy</button> -->
+        </mat-tab>
+      </mat-tab-group> 
+
+      </div> 
+    </div>
+  </div>
+</div>
+
+
+
+
+
+ <!-- ----2ns Modal ========= Adding New Jars---- -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="popup container">
+      <form [formGroup]="formdata" class="example-form">
+        <h4 style="margin-left: 15px;">Add Jar's</h4>
+        
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Jar Type</mat-label>
+            <mat-select formControlName="type" (ngModelChange)="SelectJar()">
+             <mat-option *ngFor="let jar of Jars" value={{jar.name}} >{{jar.name}}</mat-option>
+           </mat-select>
+          </mat-form-field>
+       
+        <mat-form-field class="example-full-width" appearance="outline" >
+          <mat-label>Dataset Name</mat-label>
+          <input matInput placeholder="Enter name" formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Dataset Id</mat-label>
+          <input matInput placeholder="Enter Id" formControlName="id">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline" >
+          <mat-label>Dataset Version</mat-label>
+          <input matInput placeholder="Enter Id" formControlName="version">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Desc</mat-label>
+          <textarea matInput placeholder="Desc" formControlName="desc"></textarea>
+        </mat-form-field> 
+      </form>
+     
+    </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="upload()" data-bs-dismiss="modal">Save</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- -----------Modal ======= Create Models------------- -->
+<div class="modal" id="ModelModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="popup container">
+
+      <mat-tab-group>
+      <mat-tab label="Script">
+        <!-- <textarea cols="61.5" rows="14" [(ngModel)]="value1"></textarea> -->
+        <code><pre>{{value1}}</pre></code>
+        <button type="button" class="btn btn-success model" (click)="copytext()">Copy</button>
+      </mat-tab>
+
+      <mat-tab label="API_Data">
+          <form [formGroup]="formdata2" class="example-form">
+            <h4 style="margin-left: 15px;">Enter Details</h4>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Model Type</mat-label>
+              <mat-select  formControlName="type" (ngModelChange)="selected()">
+               <mat-option *ngFor="let jar of Model"  value={{jar.id}} >{{jar.name}}</mat-option>
+             </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field class="example-full-width" appearance="outline" >
+              <mat-label>Name Of Dataset</mat-label>
+              <input matInput placeholder="Enter name" formControlName="dataset_name">
+            </mat-form-field>
+    
+            <mat-form-field class="example-full-width" appearance="outline" >
+              <mat-label>Project Name</mat-label>
+              <input matInput placeholder="Enter name" formControlName="dataset_project">
+            </mat-form-field>
+    
+            <!-- <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Dataset Version</mat-label>
+              <input matInput placeholder="Enter version" formControlName="version">
+            </mat-form-field> -->
+    
+            <mat-form-field class="example-full-width" appearance="outline" [hidden]=ishidden>
+              <mat-label>Output uri</mat-label>
+              <input matInput placeholder="Enter uri" formControlName="dataset_url">
+            </mat-form-field>
+    
+            <!-- <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Description</mat-label>
+              <textarea matInput placeholder="Description" formControlName="description"></textarea>
+            </mat-form-field>  -->
+          </form>
+
+               <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" (click)="DownloadData()" data-bs-dismiss="modal">Save</button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </mat-tab>
+      </mat-tab-group> 
+
+      </div> 
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+

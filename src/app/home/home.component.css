@@ -1,0 +1,21 @@
+
+.body{
+    background-image: url("https://media.istockphoto.com/id/1289383957/photo/blurred-bangkok-city-night-background.jpg?b=1&s=612x612&w=0&k=20&c=220ZTKH1HhaEY0EcKFlG8hmoWbKunSPHuGOOQ2FyYWg=");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 607px;
+}
+h1{
+  text-align: center;
+}
+h2{
+    color: rgb(7, 7, 97);
+    text-align: center;
+}
+img{
+    margin-left: 44%;
+}
+ng-particles{
+    margin-top: 4% !important;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { AngularCsv } from 'angular-csv-ext/dist/Angular-csv';
 
 @Component({
     selector:'app-models-content',
@@ -11,4 +12,8 @@ export class ModelsContentComponent implements OnInit{
         
     }
 
+    downloadCSV(){
+        
+        // new  AngularCsv(this.downloadfile, "Candidate-Details",this.csvOptions);
+      }
 }

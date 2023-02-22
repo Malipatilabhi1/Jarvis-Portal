@@ -3,14 +3,18 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "npx ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "postinstall": "ngcc"
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/core": "^15.1.6",
+    "@angular-devkit/schematics": "^15.1.6",
     "@angular/animations": "^15.1.0",
+    "@angular/cdk": "^15.1.1",
     "@angular/common": "^15.1.0",
     "@angular/compiler": "^15.1.0",
     "@angular/core": "^15.1.0",
@@ -19,14 +23,18 @@
     "@angular/platform-browser": "^15.1.0",
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
+    "@ngrx/store": "^15.3.0",
+    "angular-csv-ext": "^1.0.5",
     "bootstrap": "^5.2.3",
+    "ng-particles": "^3.8.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "tsparticles": "^2.8.0",
+    "tsparticles-engine": "^2.8.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.1.1",
-    "@angular/cli": "~15.1.1",
     "@angular/compiler-cli": "^15.1.0",
     "@types/jasmine": "~4.0.0",
     "jasmine-core": "~4.3.0",

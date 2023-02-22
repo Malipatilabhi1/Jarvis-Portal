@@ -3,13 +3,36 @@
         <label>Datasets </label><label class="count">10</label>  
       <!-- <mat-form-field> -->
         <!-- <mat-icon matPrefix >search</mat-icon> -->
-        <input matInput type="search" placeholder="Search Datasets..." class="input">
+        <input matInput type="search" [(ngModel)]="Searchvalue" placeholder="Search Datasets..." class="input">
       <!-- </mat-form-field>   -->
+
+      <div  class="dropdown frameworks" id="div1">
+        <h5 class="dropbtn">Frameworks<mat-icon style="margin-top:20px;">arrow_drop_down</mat-icon></h5>
+        <div class="dropdown-content">  
+          <mat-card  >
+            <label id="div1" class="gap"></label>
+            <label id="div2" class="rightF"></label>
+          </mat-card>
+        </div>  
+      </div>
+
+      <div  class="dropdown frameworks" id="div1">
+        <h5 class="dropbtn">Categories<mat-icon style="margin-top:20px;">arrow_drop_down</mat-icon></h5>
+        <div class="dropdown-content">  
+          <mat-card  >
+            <label  class="gap"></label>
+            <label  class="rightF"></label>
+            <label  class="gap"></label>
+            <label  class="rightF"></label>
+          </mat-card>
+        </div>  
+      </div>
+
     </div>
 
 
 <div class="row">
-    <div *ngFor="let data of Models" class="col-md-3 size">
+    <div *ngFor="let data of Models|filter:Searchvalue:Searchdata ;let i=index" class="col-md-3 size">
         <mat-card  routerLink="/model-content">
             <a>{{data.name}}</a><hr>
             <p>{{data.content}}

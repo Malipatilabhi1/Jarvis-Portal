@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MoveDirection, ClickMode, HoverMode, OutMode, Container, Engine } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Jarvis';
+
+
+  
 }

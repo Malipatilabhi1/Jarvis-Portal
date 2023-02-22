@@ -1,19 +1,35 @@
 <div class="container">
     <div class="header">
         <label>Models </label><label class="count">10</label>  
-      <!-- <mat-form-field> -->
-        <!-- <mat-icon matPrefix >search</mat-icon> -->
-        <input matInput type="search" placeholder="Search Models..." class="input">
-      <!-- </mat-form-field>   -->
+        <input matInput type="text" [(ngModel)]="Searchvalue" placeholder="Search Models..." class="input">
+     
+      <div  class="dropdown">
+        <h5 class="dropbtn">Frameworks<mat-icon style="margin-top:20px;">arrow_drop_down</mat-icon></h5>
+        <div class="dropdown-content">  
+          <mat-card class="dropdown1">
+            <label *ngFor="let x of Frameworks" class="frame" (onclick)="senddata(x)">{{x}}</label> 
+          </mat-card>
+        </div>  
+      </div>
+
+      <div  class="dropdown">
+        <h5 class="dropbtn">Categories<mat-icon style="margin-top:20px;">arrow_drop_down</mat-icon></h5>
+        <div class="dropdown-content">  
+          <mat-card  class="cateries_card">
+            <label *ngFor="let x of Categories" class="frame">{{x.name}}</label>
+           
+          </mat-card>
+        </div>  
+      </div>
     </div>
 
 
 <div class="row">
-    <div *ngFor="let data of Models" class="col-md-3 size">
-        <mat-card (click)="senddata(data)" routerLink="/model-content">
+    <div *ngFor="let data of Models|filter:Searchvalue:Searchdata ;let i=index" class="col-md-3 size">
+        <mat-card (click)="senddata(data)" routerLink="/model-content" class="models_card">
             <a>{{data.name}}</a><hr>
-            <p>{{data.content}}
-            </p>
+            <p>{{data.content}}</p>
+            <button (click)="downloadCSV(data)">Download</button>
         </mat-card>
     </div>
 </div>
