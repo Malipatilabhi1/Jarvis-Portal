@@ -19,8 +19,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import {MatTabsModule} from '@angular/material/tabs';
 import {ClipboardModule} from '@angular/cdk/clipboard';
-
-
 import { DocsComponent } from './docs/docs.component';
 import {DatasetsComponent} from './datasets/datasets.component';
 import { NgParticlesModule } from "ng-particles";
@@ -29,9 +27,6 @@ import { FilterPipe } from './filter.pipe';
 import { JarsComponent } from './jars/jars.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
-
-
-
 
 @NgModule({
   declarations: [
@@ -48,7 +43,6 @@ import { reducers, metaReducers } from './reducers';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    
     AppRoutingModule,
     MatToolbarModule,
     MatCardModule,

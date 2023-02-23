@@ -10,6 +10,4 @@ import { loadFull } from "tsparticles";
 export class AppComponent {
   title = 'Jarvis';
 
-
-  
 }

@@ -26,7 +26,10 @@ export class JarsComponent implements OnInit {
   Engin:any=[];
   frontend:any=[];
   Solution:any=[];
+  Searchvalue:string='';
+  Searchdata:string='Name';
   ishidden:boolean=false;
+  selectedIndex: number = 0;
   
 
   // Arr:any=[{type:'Pipeline',name:'Jarvis:8.0 Project Team NASA',url:'http://3.108.153.122:8080/projects/4cf7a62f72b84f11975fbb48ecaf21e0/experiments/c9a843952ff840459ea4aee010e07ca6/output/execution'},
@@ -52,8 +55,8 @@ export class JarsComponent implements OnInit {
           })
 
   formdata1 = this.formBuilder.group({
-    dataset_name:[],
-    dataset_project:[] ,
+    dataset_name:['',Validators.required],
+    dataset_project:['',Validators.required] ,
     dataset_id:[],
     version:[],
     description:[]
@@ -66,17 +69,6 @@ export class JarsComponent implements OnInit {
       dataset_url:[],
       }) 
 
-  //   appsList = [
-  //   {value: 'app_1', results: 'App1-result', name: 'APP 1'},
-  //  {value: 'app_2', results: 'App2-result', name: 'APP 2'},
-  //  {value: 'app_3', results: 'App3-result', name: 'APP 3'}
-  //  ];
-   
-  //  getAppList(){
-  //      console.log('getAppList');
-  //     //  console.log(this.selectedApps);
-  //    }
-
   upload(){
     debugger
     this.name=this.formdata.controls['type'].value;
@@ -88,7 +80,13 @@ export class JarsComponent implements OnInit {
     this.Array.push({Type:this.name,Name:this.data_name,Id:this.id,Version:this.version,Desc:this.desc});
     
     this.http.post('https://jarvis-test-336a1-default-rtdb.firebaseio.com/Jars.json',this.Array)
-    .subscribe(response =>console.log(response));
+    .subscribe(response =>{console.log(response)}
+    );
+
+    
+  }
+  reload(){
+    window.location.reload();
   }
 
 
@@ -166,6 +164,12 @@ this.jar=this.formdata.controls['type'].value;
   new_dataset_project_name:any='';
 
 DownloadData(){
+
+  if (this.selectedIndex !=3) {
+    this.selectedIndex = this.selectedIndex + 1;
+  }
+  console.log(this.selectedIndex);
+
   this.new_dataset_name=this.formdata1.controls['dataset_name'].value;
   this.dataset_id=this.formdata1.controls['dataset_id'].value;
   this.new_dataset_project_name=this.formdata1.controls['dataset_project'].value;
@@ -222,9 +226,5 @@ new_dataset.finalize()
   // dataset.finalize()`;
 
 
-
-
-  
-  
 }
 
