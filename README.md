@@ -25,3 +25,11 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Docker deployment
+
+Build the image:  `docker build -t jarvis-portal .` 
+
+Run the container: 
+ `docker run --name=jarvis-portal -p 4200:4200 jarvis-portal:latest` 
