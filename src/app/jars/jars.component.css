@@ -11,13 +11,64 @@
     border-radius: 10px 5px 5px 10px !important;
 }
 .lst_crd{
-    border-radius: 5px 10px 10px 5px !important;
+  border-radius: 5px 10px 10px 5px !important;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1; 
 }
+/* .pos{
+    position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;  
+} */
+hr{
+    color: black;
+    background-color:black;
+}
+.l1{
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: none;
+  margin: none; 
+  
+}
+#div1,#div2{
+    display: inline;
+}
+#data1,#data2{
+    /* display: inline-flex;
+    vertical-align: middle; */
+    display: flex;
+    align-items: center;
+}
+.icon-container {
+    margin-top: 4px;
+    display: flex;
+    align-items: center; /* optional - to center icons vertically */
+    background-color: #d8d8defc ;
+    border-radius: 4px 4px 0px 0px;
+  }
+  .icon-container mat-icon {
+    
+    display: inline-block;
+    margin-right: 2px; /* optional - to add space between icons */
+  }
+/* .scroll{
+position:relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: transparent; 
+} */
 .col{
     flex: 1;
     padding: 1em;
     margin: 4px;
-    /* background-color: rgba(169, 169, 169, 0.751);  */
+    border: solid 1px;    
     background-color:white;
     box-shadow: 0px 0px 10px 0px #c3bcbc,
     0 1px 1px 0 #9f9999,
@@ -26,7 +77,8 @@
 }
 .head{    
     text-align: center;
-    background-color: transparent;
+    /* background-color: #ebebf3fc ; */
+    background-color:#ebebf3a8;
     border-radius: 0px 0px 0px 0px;
     border: none;
     margin: none;
@@ -65,12 +117,21 @@ mat-tab{
 }
 
 .filter{
-    width: 100%;
-    background-color:#ebebf3fc  ;
+    width: 85%;
+    /* background-color:#ebebf3fc  ;    */
+    background-color:#ebebf3ba;
     border-radius: 9px;
-    border: thin;
+    border: solid 1px;
     height: 36px;
+    margin-right: 2px;
 }
+.filter.filled{
+    border: none;
+}
+/* .filter::placeholder{
+    padding-bottom: 13px;
+    margin-bottom: 13px;
+} */
 .example-form {
     min-width: 150px;
     max-width: 500px;
@@ -96,12 +157,12 @@ mat-tab{
 .row{
     margin-top: 2%;
 }
-.card{
+/* .card{
    min-height: 150px;
     box-shadow: 0px 0px 10px 0px #aeabab,
     0 1px 1px 0 #9f9999,
     0 1px 3px 0 #a8a0a0;
-} 
+}  */
 
 .popup{
     align-content: center;
@@ -126,3 +187,9 @@ mat-tab{
 }
 
 
+/* .close
+{
+  z-index:10;
+  margin-left:-3rem;
+  margin-right:1rem;
+} */

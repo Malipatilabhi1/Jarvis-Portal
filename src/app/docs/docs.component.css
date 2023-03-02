@@ -1,4 +1,4 @@
-h1{
+/* h1{
     text-align: center;
     margin-top: 5%;
 }
@@ -10,16 +10,21 @@ h1{
     margin-top: 2%;
 }
 .card{
-   min-height: 150px;
+   min-height: 90px;
     box-shadow: 0px 0px 10px 0px #aeabab,
     0 1px 1px 0 #9f9999,
     0 1px 3px 0 #a8a0a0;
 } 
+.col{
+    background-color: darkgray; 
+    width: 170px;  
+    overflow-y: auto;
 
+}
 
 .col-md-2{
-    min-width: 19%;
-    min-height: 550px;
+    min-width: 17%;
+    height: 400px;
     margin-right: 12px;
     border-radius: 8px 8px 0px 0px;
     background-color: darkgray;
@@ -50,4 +55,18 @@ h1{
   }
   input{
     padding-top: 14px;
+  } */
+
+
+  /* app.component.css */
+
+  .mat-grid-tile {
+    overflow: auto;
   }
+  
+  .mat-card-header {
+    position: sticky;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  

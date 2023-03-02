@@ -1,109 +1,17 @@
-<div class="container">
-
-    <div class="container mt-3">  
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-        Add Jar
-      </button>
-    </div>
-    
-  
-      <div class="row">
-      <mat-card class="col-md-2 size">
-          <mat-card class="head">
-              <h5>Solutions Jar</h5>
-              <label>Verticalized Engines</label>
-          </mat-card><hr>
-          <input placeholder="Filter" >
-      </mat-card>
-      <div class="col-md-2">
-          <mat-card class="head">
-              <h5>Front end Jar</h5>
-              <label>UI/UX templates</label>
-          </mat-card><hr>
-          <input placeholder="Filter" class="filter">
-      </div>
-      <div class="col-md-2">
-          <mat-card class="head">
-              <h5>Engine jar</h5>
-              <label>E2E task specific workflows</label>
-          </mat-card><hr>
-          <input placeholder="Filter" class="filter">
-      </div>
-      <div class="col-md-2">
-          <mat-card class="head">
-              <h5>Model jar</h5>
-              <label>Intelligence Repository</label>
-          </mat-card><hr>
-          <input placeholder="Filter" class="filter">
-      </div>
-      <div class="col-md-2">
-          <mat-card class="head">
-              <h5>Data jar</h5>
-              <label>Unified data store</label>
-          </mat-card><hr>
-          <input placeholder="Filter" class="filter">
-      </div>
-  
-      
-  </div>
-  </div>
-
-<div class="container">
-<div class="row">
-    <div *ngFor="let x of Array" class="col-md-3 size">
-<mat-card  class="card" >
-    <mat-card-content>
-        <h4>Type: {{x.type}}</h4>
-        <h5>Name: {{x.name}}</h5>
-        {{x.type}} <a href={{x.url}}>link</a>
-    </mat-card-content>
-</mat-card>
-    </div>
-</div>
-</div>
-
-
-<br>
-<!-- The Modal -->
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-  
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h5 class="modal-title">Add Jar's</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-  
-        <!-- Modal body -->
-        <div class="modal-body">
-           
-            <form class="example-form">
-                <!-- <mat-form-field class="example-full-width" > -->
-                  <mat-label>Name</mat-label>
-                  <input placeholder="name" [(ngModel)]="name">
-                <!-- </mat-form-field> -->
-  
-                <!-- <mat-form-field class="example-full-width"> -->
-                    <mat-label>Url</mat-label>
-                    <input placeholder="url" [(ngModel)]="url">
-                  <!-- </mat-form-field> -->
-  
-                <!-- <mat-form-field class="example-full-width" >   -->
-                  <mat-label>Description:</mat-label>
-                  <textarea  [(ngModel)]="type"></textarea>
-                <!-- </mat-form-field> -->
-              </form>
-        </div>
-  
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" (click)="upload()">Save</button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  
-  
+<br><br><br><br>
+<mat-grid-list cols="5" rowHeight="2:1">
+  <mat-grid-tile *ngFor="let card of cards">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ card.title }}</mat-card-title>
+        <mat-card-subtitle>{{ card.subtitle }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p> {{ card.content }}</p>
+        <p> {{ card.content1 }}</p>
+        <p> {{ card.content }}</p>
+        <p> {{ card.content1 }}</p>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

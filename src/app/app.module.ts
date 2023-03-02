@@ -8,6 +8,7 @@ import { ModelsComponent } from './models/models.component';
 import { ModelsContentComponent } from './models/models-content/models-content.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {MatGridListModule} from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
@@ -18,6 +19,8 @@ import { MatOptionModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { DocsComponent } from './docs/docs.component';
 import {DatasetsComponent} from './datasets/datasets.component';
@@ -27,6 +30,7 @@ import { FilterPipe } from './filter.pipe';
 import { JarsComponent } from './jars/jars.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
+import { FormsComponent } from './jars/forms/forms.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,8 @@ import { reducers, metaReducers } from './reducers';
     ModelsContentComponent,
     HomeComponent,
     FilterPipe,
-    JarsComponent
+    JarsComponent,
+    FormsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,10 +53,13 @@ import { reducers, metaReducers } from './reducers';
     MatCardModule,
     MatIconModule,
     MatFormFieldModule,
+    MatGridListModule,
+    MatTooltipModule,
     FormsModule,
     ReactiveFormsModule,
     NgParticlesModule,
     MatInputModule,
+    MatMenuModule,
     HttpClientModule,
     MatSelectModule,
     MatTabsModule,
