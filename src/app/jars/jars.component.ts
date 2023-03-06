@@ -18,6 +18,8 @@ export class JarsComponent implements OnInit {
   data_name:any;
   version:any;
   desc:any;
+  view_url:any;
+  run_url:any;
 
   ab:any=[];
   selectedApps:any;
@@ -37,6 +39,7 @@ export class JarsComponent implements OnInit {
   
   ngOnInit(): void {
     this.fetchData();
+    this.getModel();
   }
   
   formdata = this.formBuilder.group({
@@ -57,16 +60,43 @@ export class JarsComponent implements OnInit {
     
     formdata2 = this.formBuilder.group({
       project_name:[],
-      model_id:[] ,
-      model_url:[],
+      view_url:[] ,
+      run_url:[],
       }) 
     formdata3 = this.formBuilder.group({
       project_name:[],
       url:[],
       }) 
 
+
+addModel(){
+    debugger
+    let modelName=this.formdata2.controls['project_name'].value;
+    let modelViewUrl=this.formdata2.controls['view_url'].value;
+    let modelRunUrl=this.formdata2.controls['run_url'].value;
+    let modelTags='Model';
+
+    this.http.post('http://localhost:3000/model/insertModel',{modelName,modelViewUrl,modelRunUrl,modelTags})
+    .subscribe(response=>
+      {
+        console.log(response);
+      }
+    )
+  }
+dumbb:any;
+  getModel(){
+    this.http.post('http://localhost:3000/model/retrieveModels',{})
+    .subscribe(response=>
+      {
+        this.dumbb=response;
+        this.Modules=this.dumbb.data;
+        console.log(this.Modules); 
+      }
+    )
+  }
+
   upload(){
-  debugger
+  
     if(this.ds==true){
       debugger
     this.name=this.formdata.controls['type'].value;
@@ -83,11 +113,11 @@ export class JarsComponent implements OnInit {
   }else if(this.mdl==true){
 
     this.name=this.formdata2.controls['project_name'].value;
-    this.id=this.formdata2.controls['model_id'].value;
-    this.desc=this.formdata2.controls['model_url'].value;
+    this.id=this.formdata2.controls['view_url'].value;
+    this.desc=this.formdata2.controls['run_url'].value;
 
     this.Array.push({Type:'Model',Name:this.name,Id:this.id,Url:this.desc});
-    
+    //Id will be view_url and Url will be run_url
     this.http.post('https://jarvis-test-336a1-default-rtdb.firebaseio.com/Jars.json',this.Array)
     .subscribe(response =>{console.log(response)}
     );   
@@ -150,11 +180,11 @@ this.formdata.controls['desc'].setValue(data.Desc);
       if(this.store[i].Type=='Pipeline'){
         this.Engin.push(data[i]); 
       }else if(this.store[i].Type=='Model'){
-        this.Modules.push(data[i]);
-        console.log(this.Modules)
+        // this.Modules.push(data[i]);
+        
       }else if(this.store[i].Type=='Dataset'){
         this.Dataset.push(data[i]);
-        console.log(this.Dataset)
+        
       }else if(this.store[i].Type=='Solution'){
         this.Solution.push(data[i])
       }    

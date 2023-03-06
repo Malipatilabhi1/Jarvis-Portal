@@ -5,9 +5,9 @@
     </button>
   </div> -->
   <div class="row">
-    <mat-card class="col fst_crd">
+    <mat-card class="col fst_crd ex3">
       <div class="l1">
-      <mat-card class="head fst_crd">
+      <mat-card class="head">
         <h5>Solutions Jar</h5>
         <label>Verticalized Engines</label>
       </mat-card><hr> 
@@ -18,7 +18,7 @@
        <div id="div2">
         <!-- <mat-icon>add_circle</mat-icon> -->
         <mat-icon (click)="SelectJar('Solution')" data-bs-toggle="modal" data-bs-target="#myModal"
-          matTooltip="Add Item">add_circle</mat-icon>
+          matTooltip="Add Item" class="addButton">add_circle</mat-icon>
        </div>
     </div>
 
@@ -44,7 +44,7 @@
 
     </mat-card>
    <!-- --------------------------------------Fontend Jar------------------------------------------------------------> 
-    <mat-card class="col">
+    <mat-card class="col ex3">
       <div class="l1">
         <mat-card class="head">
             <h5>Front end Jar</h5>
@@ -55,17 +55,17 @@
           <input matInput type="search" placeholder="Filter" class="filter" >
         </div>
          <div id="div2">
-          <mat-icon>add_circle</mat-icon>
+          <mat-icon class="addButton">add_circle</mat-icon>
          </div>
       </div>
 
 
     </mat-card>
 <!-- --------------------------------------Engin Jar------------------------------------------------------------>
-    <mat-card class="col">
+    <mat-card class="col ex3">
       <div class="l1">
         <mat-card class="head">
-            <h5>Engine jar</h5>
+            <h5>Pipelines jar</h5>
             <label>E2E task specific workflows</label>
         </mat-card><hr>
 
@@ -73,7 +73,7 @@
           <input matInput type="search" placeholder="Filter" class="filter" >
         </div>
          <div id="div2">
-          <mat-icon>add_circle</mat-icon>
+          <mat-icon class="addButton">add_circle</mat-icon>
          </div>
       </div>
         <div *ngFor="let data of Engin">
@@ -98,20 +98,20 @@
         </div>
          <div id="div2">
           <mat-icon (click)="SelectJar('Model')" data-bs-toggle="modal" data-bs-target="#myModal"
-          matTooltip="Add Model">add_circle</mat-icon>
+          matTooltip="Add Model" class="addButton">add_circle</mat-icon>
          </div>
       </div>
 
         <div *ngFor="let data of Modules">
           <mat-card class="jars">
             <div class="icon-container">
-              <mat-icon  data-bs-toggle="modal" (click)="modelcode(data)" data-bs-target="#ModelModal" style="margin-left: 71%;font-size: 20px;">autorenew</mat-icon>
-              <mat-icon [matMenuTriggerFor]="menu" style="font-size: 20px;">more_vert</mat-icon>
+              <!-- <mat-icon  data-bs-toggle="modal" (click)="modelcode(data)" data-bs-target="#ModelModal" style="margin-left: 71%;font-size: 20px;">autorenew</mat-icon> -->
+              <mat-icon [matMenuTriggerFor]="menu" style="font-size: 20px;margin-left: 84%;">more_vert</mat-icon>
             </div>  
             
-            <h6>{{data.Name}}</h6>
-            <label>{{data.Desc}}</label> 
-           <label>{{data.Type}}:<a href={{data.Url}}>Link</a></label>
+            <h6>{{data.modelName}}</h6> 
+            <label><a href={{data.modelViewUrl}}>ViewUrl</a></label>
+           <label><a href={{data.modelRunUrl}}>RunUrl</a></label>
            
            <!-- <button  data-bs-toggle="modal" data-bs-target="#ModelModal">Create</button> -->
           </mat-card>
@@ -133,7 +133,7 @@
         </div>
          <div id="div2">
           <mat-icon (click)="SelectJar('Dataset')" data-bs-toggle="modal" data-bs-target="#myModal"
-          matTooltip="Add Dataset">add_circle</mat-icon>
+          matTooltip="Add Dataset" class="addButton">add_circle</mat-icon>
          </div>
       </div>
 
@@ -249,13 +249,13 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="outline" >
-          <mat-label>Model Id</mat-label>
-          <input matInput placeholder="Enter model id" formControlName="model_id">
+          <mat-label>View url</mat-label>
+          <input matInput placeholder="Enter model id" formControlName="view_url">
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="outline" >
-          <mat-label>Model Url</mat-label>
-          <input matInput placeholder="Enter url" formControlName="model_url">
+          <mat-label>Run url</mat-label>
+          <input matInput placeholder="Enter url" formControlName="run_url">
         </mat-form-field>
       </form>
 
@@ -277,7 +277,7 @@
     </div>
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" (click)="upload()" data-bs-dismiss="modal">Save</button>
+        <button type="button" class="btn btn-success" (click)="addModel()" data-bs-dismiss="modal">Save</button>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
