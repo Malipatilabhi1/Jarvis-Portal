@@ -2,8 +2,8 @@
   "name": "jarvis",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "npx ng serve",
+    "ng": "ng ",
+    "start": "npx ng serve --host 0.0.0.0 --disable-host-check",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
