@@ -1,9 +1,5 @@
 <div class="container">
-  <!-- <div class="mt-3">  
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-      Add Jar
-    </button>
-  </div> -->
+  
   <div class="row">
     <mat-card class="col fst_crd ex3">
       <div class="l1">
@@ -12,7 +8,6 @@
         <label>Verticalized Engines</label>
       </mat-card><hr> 
       <div id="div1">
-
         <input matInput type="search" placeholder="Filter" class="filter" >
       </div>
        <div id="div2">
@@ -26,14 +21,15 @@
     <div *ngFor="let data of Solution">
           <mat-card class="jars">
             <div class="icon-container">
-              <!-- <mat-icon  data-bs-toggle="modal" (click)="modelcode(data)" data-bs-target="#ModelModal" style="margin-left: 71%;font-size: 20px;">autorenew</mat-icon> -->
               <mat-icon [matMenuTriggerFor]="menu" style="margin-left: 83%;font-size: 20px;">more_vert</mat-icon>
             </div>  
             
-            <h6>{{data.Name}}</h6>
-            <label>{{data.Desc}}</label> 
-           <label>{{data.Type}}:<a href={{data.Url}}>Link</a></label>
-           
+            <h6>{{data.solutionName}}</h6>
+            <label>{{data.Desc}}</label>      
+            <div class="btn-grp">
+              <button mat-flat-button class="solution_run_btn"><a href={{data.solutionViewUrl}}>View</a></button>
+              </div>
+          
            <!-- <button  data-bs-toggle="modal" data-bs-target="#ModelModal">Create</button> -->
           </mat-card>
           <mat-menu #menu="matMenu">
@@ -61,7 +57,7 @@
 
 
     </mat-card>
-<!-- --------------------------------------Engin Jar------------------------------------------------------------>
+<!-- --------------------------------------Pipeline Jar------------------------------------------------------------>
     <mat-card class="col ex3">
       <div class="l1">
         <mat-card class="head">
@@ -105,15 +101,16 @@
         <div *ngFor="let data of Modules">
           <mat-card class="jars">
             <div class="icon-container">
-              <!-- <mat-icon  data-bs-toggle="modal" (click)="modelcode(data)" data-bs-target="#ModelModal" style="margin-left: 71%;font-size: 20px;">autorenew</mat-icon> -->
+             
               <mat-icon [matMenuTriggerFor]="menu" style="font-size: 20px;margin-left: 84%;">more_vert</mat-icon>
             </div>  
+            <h6>{{data.modelName}}</h6>
+
+            <div class="btn-group">
+            <button mat-flat-button ><a href={{data.modelViewUrl}}>View</a></button>
+            <button mat-flat-button ><a href={{data.modelRunUrl}} >Run</a></button> 
+            </div>
             
-            <h6>{{data.modelName}}</h6> 
-            <label><a href={{data.modelViewUrl}}>ViewUrl</a></label>
-           <label><a href={{data.modelRunUrl}}>RunUrl</a></label>
-           
-           <!-- <button  data-bs-toggle="modal" data-bs-target="#ModelModal">Create</button> -->
           </mat-card>
           <mat-menu #menu="matMenu">
             <label mat-menu-item (click)="editData(data,'Model')">Edit</label>
@@ -130,24 +127,22 @@
       <hr>
         <div id="div1">
           <input matInput type="search" placeholder="Filter" class="filter" [(ngModel)]="Searchvalue">
-        </div>
+        </div> 
          <div id="div2">
           <mat-icon (click)="SelectJar('Dataset')" data-bs-toggle="modal" data-bs-target="#myModal"
           matTooltip="Add Dataset" class="addButton">add_circle</mat-icon>
          </div>
       </div>
-
+      
         <div *ngFor="let data of Dataset|filter:Searchvalue:Searchdata ;let i=index" class="scroll">
           <mat-card class="jars">
             <div class="icon-container">
-              <mat-icon (click)="setDataValues(data)" data-bs-toggle="modal" data-bs-target="#DownloadModal" style="margin-left: 71%;font-size: 20px;">autorenew</mat-icon>
+              <mat-icon (click)="setDataValues(data)" data-bs-toggle="modal" data-bs-target="#DownloadModal" style="margin-left: 71%;font-size: 20px;color: green;">autorenew</mat-icon>
               <mat-icon [matMenuTriggerFor]="menu" style="font-size: 20px;">more_vert</mat-icon>
             </div>
-            <h6>{{data.Name}}</h6>
-            <label>{{data.Version}}</label>
-           <label>{{data.Desc}}</label>  
-           <!-- <button  data-bs-toggle="modal" data-bs-target="#DownloadModal">Create</button>  -->
-           <!-- <mat-icon class="download_icon" data-bs-toggle="modal" data-bs-target="#DownloadModal">file_download</mat-icon> -->  
+            <h6>{{data.datasetName}}</h6>
+            <label>{{data.datasetVersion}}</label>
+           <label>{{data.datasetDescription}}</label>  
           </mat-card>
           <mat-menu #menu="matMenu">
             <label mat-menu-item data-bs-toggle="modal" data-bs-target="#myModal" (click)="editData(data,'Dataset')">Edit</label>
@@ -239,6 +234,11 @@
           <mat-label>Desc</mat-label>
           <textarea matInput placeholder="Desc" formControlName="desc"></textarea>
         </mat-form-field> 
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" (click)="addDataset()" data-bs-dismiss="modal">Save</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
       </form>
 
       <form [formGroup]="formdata2" class="example-form" *ngIf="mdl">
@@ -257,6 +257,11 @@
           <mat-label>Run url</mat-label>
           <input matInput placeholder="Enter url" formControlName="run_url">
         </mat-form-field>
+
+         <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="addModel()" data-bs-dismiss="modal">Save</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
       </form>
 
 
@@ -271,15 +276,20 @@
           <mat-label>Url</mat-label>
           <input matInput placeholder="Enter url" formControlName="url">
         </mat-form-field>
+       
+         <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="addSolution()" data-bs-dismiss="modal">Save</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
       </form>
 
      
     </div>
       <!-- Modal footer -->
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button type="button" class="btn btn-success" (click)="addModel()" data-bs-dismiss="modal">Save</button>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

@@ -30,16 +30,18 @@ export class JarsComponent implements OnInit {
   frontend:any=[];
   Solution:any=[];
   Searchvalue:string='';
-  Searchdata:string='Name';
+  Searchdata:string='datasetName';
   ishidden:boolean=false;
   selectedIndex: number = 0;
   filled:boolean=false;
-
+ 
   constructor(private formBuilder: FormBuilder,private http:HttpClient){ }
   
   ngOnInit(): void {
     this.fetchData();
     this.getModel();
+    this.getSolution();
+    this.getdataset();
   }
   
   formdata = this.formBuilder.group({
@@ -76,7 +78,7 @@ addModel(){
     let modelRunUrl=this.formdata2.controls['run_url'].value;
     let modelTags='Model';
 
-    this.http.post('http://localhost:3000/model/insertModel',{modelName,modelViewUrl,modelRunUrl,modelTags})
+    this.http.post('http://3.108.153.122:3000/model/insertModel',{modelName,modelViewUrl,modelRunUrl,modelTags})
     .subscribe(response=>
       {
         console.log(response);
@@ -84,8 +86,11 @@ addModel(){
     )
   }
 dumbb:any;
+dumbb1:any;
+dumbb2:any;
+
   getModel(){
-    this.http.post('http://localhost:3000/model/retrieveModels',{})
+    this.http.post('http://3.108.153.122:3000/model/retrieveModels',{})
     .subscribe(response=>
       {
         this.dumbb=response;
@@ -94,6 +99,54 @@ dumbb:any;
       }
     )
   }
+
+  addDataset(){
+    debugger
+    let datasetName=this.formdata.controls['name'].value;
+    let datasetId=this.formdata.controls['id'].value;
+    let datasetVersion=this.formdata.controls['version'].value;
+    let datasetDescription=this.formdata.controls['desc'].value;
+    
+    this.http.post('http://3.108.153.122:3000/data/insertData',{datasetName,datasetId,datasetVersion,datasetDescription})
+    .subscribe(response =>{console.log(response)}
+    );   
+    
+  }
+  getdataset(){
+    this.http.post('http://3.108.153.122:3000/data/retrieveDatasets',{})
+    .subscribe(response=>
+      {
+        this.dumbb1=response;
+        this.Dataset=this.dumbb1.data;
+        console.log(this.Dataset); 
+      }
+    )
+  }
+
+  addSolution(){
+    let solutionName=this.formdata3.controls['project_name'].value;
+    let solutionViewUrl=this.formdata3.controls['url'].value;
+    let solutionRunUrl='runurl';
+    let solutionTags='Solution';
+    
+    this.http.post('http://3.108.153.122:3000/solution/insertSolution',{solutionName,solutionViewUrl,solutionRunUrl,solutionTags})
+    .subscribe(response =>{
+      console.log(response);
+    });   
+  }
+
+  getSolution(){
+    this.http.post('http://3.108.153.122:3000/solution/retrieveSolutions',{})
+    .subscribe(response=>
+      {
+        this.dumbb1=response;
+        this.Solution=this.dumbb1.data;
+        console.log(this.Solution); 
+      }
+    )
+  }
+  
+  
 
   upload(){
   
@@ -138,9 +191,10 @@ dumbb:any;
 editData(data:any,jar:any){
   
 this.SelectJar(jar);
-this.formdata.controls['name'].setValue(data.Name);
-this.formdata.controls['version'].setValue(data.Version);
-this.formdata.controls['desc'].setValue(data.Desc);
+this.formdata.controls['name'].setValue(data.datasetName);
+this.formdata.controls['version'].setValue(data.datasetVersion);
+this.formdata.controls['id'].disable();
+this.formdata.controls['desc'].setValue(data.datasetDescription);
 }
 
   reload(){
@@ -183,10 +237,10 @@ this.formdata.controls['desc'].setValue(data.Desc);
         // this.Modules.push(data[i]);
         
       }else if(this.store[i].Type=='Dataset'){
-        this.Dataset.push(data[i]);
+        // this.Dataset.push(data[i]);
         
       }else if(this.store[i].Type=='Solution'){
-        this.Solution.push(data[i])
+        // this.Solution.push(data[i])
       }    
     }
   }

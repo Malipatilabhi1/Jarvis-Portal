@@ -51,16 +51,16 @@ hr{
     margin-right: 2px; /* optional - to add space between icons */
    
   }
-  .addButton{
+.addButton{
     color: white;
-  }
-
+}
 .col{
     flex: 1;
     padding: 1em;
     margin: 4px;
     border: solid 1px;    
-    background-color:#0a072b;
+    /* background-color:#0a072b; */
+    background-color:#0f0e21f2;
     box-shadow: 0px 0px 10px 0px #c3bcbc,
     0 1px 1px 0 #9f9999,
     0 1px 3px 0 #a8a0a0;
@@ -69,12 +69,13 @@ hr{
 .head{    
     text-align: center;
     background-color: #ffffffc5 ;
-    /* background-color:#f9f7f7a8; */
     border-radius: 2px;
     border: none;
     margin: none;
     min-height: 85px;
 }
+
+
 .col1{
     background-color: darkgray; 
     background-color:white;
@@ -103,31 +104,43 @@ mat-tab{
 
 .filter{
     width: 85%;
-    /* background-color:#ebebf3ba; */
-    background-color: #fff;
+    
+    background-color:transparent;
     border-radius: 5px;
-    border: solid 1px;
+    border: solid white 1px;
     height: 36px;
     margin-right: 2px;
 }
 .filter.filled{
     border: none;
+    color: white;
     background-color: white;
 }
+.filter:focus{
+    color: white;
+  }
 .example-form {
     min-width: 150px;
     max-width: 500px;
     width: 100%;
   }
-  
+.ss{
+    background-color: transparent;
+    border: solid white 2px;
+}
+.ss:hover{
+    background-color: white;
+}
   .example-full-width {
     width: 98%;
+    
   }
   input,textarea{
     padding-top: 14px;
   }
-
-
+h5{
+    color: #0a072b;
+}
   h1{
     text-align: center;
     margin-top: 5%;
@@ -146,7 +159,7 @@ mat-tab{
 }
 .jars{
     text-align: center;
-    background-color: #ebebf3fc ;
+    background-color: #fcfcfcfc ;
    
     margin-top: 5%;
 }
@@ -162,4 +175,42 @@ mat-tab{
 .download_icon{
     margin-left: 87%;
 }
+h6{
+    margin-top: 4px;
+}
 
+.btn-grp button{
+    background-color: #1a098d; /* Green background */
+    border: 1px solid black; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    margin-bottom: 5px;
+    width: 80px;
+    height: 30px;   
+    
+}
+.btn-group button {
+    background-color: #1a098d; /* Green background */
+    border: 1px solid black; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    margin-left: 5px;
+    margin-bottom: 5px;
+    width: 80px;
+    height: 30px;   
+  }
+  button a{
+    color: white;
+    text-decoration: none;   
+  }
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color: #3e8e41;
+  }
+  .btn-grp button:hover {
+    background-color: #3e8e41;
+  }
+
+  
